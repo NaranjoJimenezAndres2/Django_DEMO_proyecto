@@ -13,7 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
@@ -23,4 +24,4 @@ urlpatterns = [
     #path('formulaOne/', include('formulaOne.urls')), #Aqui se enruta la aplicacion formulaOne a la url formulaOne capturando todas las urls de la aplicacion urls.py
     path('admin/', admin.site.urls),
     path ('', include('formulaOne.urls')),#al estar vacio puedes poner directamente el segundo parametro que esta dentro de la aplicacion
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
