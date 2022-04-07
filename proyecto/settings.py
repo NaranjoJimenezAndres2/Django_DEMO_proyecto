@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
+
     
     # Django REST framework 
     'rest_framework',
@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     
     # CORS
     'corsheaders',
+    
+    
+    'whitenoise.runserver_nostatic',
     
 ]
 
@@ -68,9 +71,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
-    
-    # Add whitenoise middleware here
+       # Add whitenoise middleware here
    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
+ 
     
     
 ]
@@ -166,11 +170,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 
 DEBUG = False
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
