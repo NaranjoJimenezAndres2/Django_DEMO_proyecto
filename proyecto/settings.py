@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'proyecto',
+    
+    
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,11 +50,28 @@ INSTALLED_APPS = [
     # ForumlaOne application
     'formulaOne.apps.FormulaOneConfig',
     
+    # Prueba application
+    'prueba.apps.PruebaConfig',
+    
+    # Comparacion application
+    'comparacionDjango.apps.ComparaciondjangoConfig',
+
+    
+    
     # CORS
     'corsheaders',
     
-    
+    #Heroku
     'whitenoise.runserver_nostatic',
+    
+    #Boostrap
+    'bootstrap4',
+    
+    #'fastf1'
+    
+
+    
+
     
 ]
 
@@ -84,7 +104,7 @@ ROOT_URLCONF = 'proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,6 +112,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
@@ -109,15 +130,15 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-DB_NAME ='mongodb+srv://user:3317@cluster0.oxux9.mongodb.net/formulaOne?retryWrites=true&w=majority'
+MONGO_URI ='mongodb+srv://empresa:0000@cluster0.oxux9.mongodb.net/proyecto?retryWrites=true&w=majority'
  
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'formulaOne',
+        'NAME': 'proyecto',
         'ENFORCE_SCHEMA': False,
         "CLIENT": {
-           "host": 'mongodb+srv://user:3317@cluster0.oxux9.mongodb.net/formulaOne?retryWrites=true&w=majority',
+           "host": 'mongodb+srv://empresa:0000@cluster0.oxux9.mongodb.net/proyecto?retryWrites=true&w=majority',
         }, 
     }
 }
@@ -174,7 +195,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 
-DEBUG = False
+DEBUG = True
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
+
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': 'C:/Users/diama/Desktop/proyecto final FP_2/hello_django',
+    }
+}
 
 
 

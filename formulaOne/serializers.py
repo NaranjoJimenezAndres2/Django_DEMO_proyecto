@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Comparacion
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class ComparacionSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Article
+        model = Comparacion
         fields = ('id', 'title', 'content', 'created_at')
         
         

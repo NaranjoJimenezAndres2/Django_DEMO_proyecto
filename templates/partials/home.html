@@ -1,0 +1,29 @@
+<head>{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+  
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+</head>
+{# Display a form #}
+<body>
+    {% block content %}
+
+            
+    {% endblock %}
+
+
+
+
+      <form action="http:localhost:4200/">
+         <button type="submit"class="btn btn-secondary" >ATRAS</button>
+      </form>
+
+
+    
+</body>

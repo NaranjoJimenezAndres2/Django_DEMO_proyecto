@@ -25,4 +25,8 @@ urlpatterns = [
     #path('formulaOne/', include('formulaOne.urls')), #Aqui se enruta la aplicacion formulaOne a la url formulaOne capturando todas las urls de la aplicacion urls.py
     path('admin/', admin.site.urls),
     path ('', include('formulaOne.urls')),#al estar vacio puedes poner directamente el segundo parametro que esta dentro de la aplicacion
+    path ('', include('prueba.urls')),
+    path ('', include('comparacionDjango.urls')),
+    path ('', include('mostrarCarrera.urls')),
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
