@@ -195,7 +195,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 ALLOWED_HOSTS = ['localhost', '.herokuapp.com']
 
-DEBUG = True
+DEBUG = False
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
