@@ -5,8 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from .models import Circuito
-from .serializers import PruebaSerializer
+
 # Create your views here.
 import pymongo
 import pandas as pd

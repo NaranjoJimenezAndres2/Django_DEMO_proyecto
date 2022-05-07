@@ -14,3 +14,4 @@ class Circuito(models.Model):
     
     def __str__(self):
         return self.name + " " + self.location + " " + self.country #se recogen los campos que se muestran despues del guardado
+    

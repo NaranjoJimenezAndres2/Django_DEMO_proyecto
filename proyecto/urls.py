@@ -28,5 +28,7 @@ urlpatterns = [
     path ('', include('prueba.urls')),
     path ('', include('comparacionDjango.urls')),
     path ('', include('mostrarCarrera.urls')),
+    path ('', include('carreraDetalle.urls')),
+    path ('', include('telemetria.urls')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

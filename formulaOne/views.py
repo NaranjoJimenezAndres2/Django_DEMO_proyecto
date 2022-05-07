@@ -23,6 +23,7 @@ from matplotlib import style
 
 
 
+
     #emision=carreras_df.to_html(classes='table table-striped table-bordered table-hover')
     #return HttpResponse(emision)
 
@@ -129,7 +130,7 @@ def comparaciones(request, year, piloto1, piloto2):
     
     
     pl.use('Agg')
-    plt.figure(figsize=(10,5))
+    plt.figure(figsize=(10,5)) #tamaño de la figura
     plt.style.use('dark_background')
     plt.plot(piloto1_df['nameSht'] ,piloto1_df['points'],'o-g',  label= piloto1)
     plt.plot(piloto1_df['nameSht'] ,piloto2_df['points'],'*--',  label= piloto2)
@@ -146,7 +147,10 @@ def comparaciones(request, year, piloto1, piloto2):
     
     response = HttpResponse(content_type='image/png')
     plt.savefig(response, format='png')
+    
+    #devolver la url de la imagen
     return response
+
     
 
 

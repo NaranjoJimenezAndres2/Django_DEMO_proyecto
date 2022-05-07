@@ -55,8 +55,13 @@ INSTALLED_APPS = [
     
     # Comparacion application
     'comparacionDjango.apps.ComparaciondjangoConfig',
-
     
+    # CarreraDetalle application
+    "carreraDetalle.apps.CarreradetalleConfig",
+    
+    # Telemetria application
+    'telemetria.apps.TelemetriaConfig',
+
     
     # CORS
     'corsheaders',
@@ -66,8 +71,7 @@ INSTALLED_APPS = [
     
     #Boostrap
     'bootstrap4',
-    
-    #'fastf1'
+
     
 
     
@@ -200,13 +204,6 @@ DEBUG = False
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': 'C:/Users/diama/Desktop/proyecto final FP_2/hello_django',
-    }
-}
 
 
 

@@ -156,7 +156,7 @@ def carreras(request):
     registros_df['name']=pd.concat([registros_df['forename'],registros_df['surname']],axis=1).apply(lambda x: ' '.join(x),axis=1)
     #eliminar los campos forename y surname del dataframe registros_df
     registros_df.drop(['forename','surname'],axis=1,inplace=True)
-    registros_df.drop(['raceId','_id','circuitId','constructorId','driverId'],axis=1,inplace=True)
+    registros_df.drop(['raceId','_id','circuitId','constructorId'],axis=1,inplace=True)
     #cambiar el valor /N de time por string --
     #registros_df=registros_df.replace(to_replace=r'\N',value='--',regex=True)
     #pasar el campo puntos a int.
