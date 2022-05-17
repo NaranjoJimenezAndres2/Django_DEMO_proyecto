@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Circuito(models.Model):
+"""class Circuito(models.Model):
     circuitId = models.CharField(max_length=100)
     circuitRef = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
@@ -13,5 +13,5 @@ class Circuito(models.Model):
     
     
     def __str__(self):
-        return self.name + " " + self.location + " " + self.country #se recogen los campos que se muestran despues del guardado
+        return self.name + " " + self.location + " " + self.country #se recogen los campos que se muestran despues del guardado"""
     

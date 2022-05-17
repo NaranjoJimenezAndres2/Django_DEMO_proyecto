@@ -25,12 +25,14 @@ from matplotlib import style
 @csrf_exempt
 @api_view(['GET', 'POST', 'DELETE'])
 
-def carreras(request,race,driverId):
+def carreras(request,year,race,driverId):
+    #pasar a int el valor year
+    year = int(year)
     client= pymongo.MongoClient(settings.MONGO_URI)
     db = client.get_database('proyecto')
     collection = db.get_collection('races')
     pipeline = [{"$match":{
-    "year": 2021
+    "year": year
     }
 },
 {
@@ -53,7 +55,7 @@ def carreras(request,race,driverId):
     }
 },
 {
-    "$match":{"circuitName":race}
+    "$match":{"circuitName": race}
 },
 {
     "$lookup":{
@@ -75,7 +77,7 @@ def carreras(request,race,driverId):
         "driverId":"$circuitResult.driverId",
         "constructorId":"$circuitResult.constructorId",
         "number":"$circuitResult.number",
-        "position":"$circuitResult.position",
+        "positionOrder":"$circuitResult.position",
         "points":"$circuitResult.points",
         "laps":"$circuitResult.laps",
         "time":"$circuitResult.time",
@@ -103,7 +105,7 @@ def carreras(request,race,driverId):
         "driverId":1,
         "constructorId":1,
         "number":1,
-        "position":1,
+        "positionOrder":1,
         "points":1,
         "laps":1,
         "time":1,
@@ -137,7 +139,7 @@ def carreras(request,race,driverId):
         "driverId":1,
         "constructorId":1,
         "number":1,
-        "position":1,
+        "positionOrder":1,
         "points":1,
         "laps":1,
         "time":1,
@@ -174,7 +176,7 @@ def carreras(request,race,driverId):
         "driverId":1,
         "constructorId":1,
         "number":1,
-        "position":1,
+        "positionOrder":1,
         "points":1,
         "laps":1,
         "time":1,
@@ -188,7 +190,68 @@ def carreras(request,race,driverId):
         "forename":1,
         "nationality":1,
         "status":"$statusDetail.status"}
+},
+{
+    "$lookup":{
+        "from": "lap_times",
+        "let":{
+            "driverId":"$driverId",
+            "raceId": "$raceId",
+            "laps":"$fastestLap"
+        },
+        "pipeline":[
+            {
+                "$match":{
+                    "$expr":{
+                        "$and":[
+                            {
+                                "$eq":["$driverId","$$driverId"]
+                            },
+                            {
+                                "$eq":["$raceId","$$raceId"]
+                            },
+                            {
+                                "$eq":["$lap","$$laps"]
+                            },
+                        ]
+                    }
+                }
+            }
+        ],
+        "as":"fastestLapDetail"
+    }
+},
+{
+    "$unwind":"$fastestLapDetail"
+},
+{
+    "$project":{
+        "raceId":1,
+        "name":1,
+        "date":1,
+        "circuitId":1,
+        "circuitName":1,
+        "driverId":1,
+        "constructorId":1,
+        "number":1,
+        "positionOrder":1,
+        "points":1,
+        "laps":1,
+        "time":1,
+        "grid":1,
+        "fastestLap":1,
+        "statusId":1,
+        "constructorName":1,
+        "constructorNationality":1,
+        "code":1,
+        "surname":1,
+        "forename":1,
+        "nationality":1,
+        "status":1,
+        "lapFast": "$fastestLapDetail.time"
+    }
 }
+
 ]
     registros=collection.aggregate(pipeline)
     registros_df=pd.DataFrame(list(registros))
@@ -198,7 +261,10 @@ def carreras(request,race,driverId):
     registros_df.drop(['forename','surname'],axis=1,inplace=True)
     registros_df.drop(['raceId','_id','circuitId','constructorId','driverId'],axis=1,inplace=True)
     #generar el campo overtake para el dataframe registros_df restando grid y position
-    registros_df['overtake']=registros_df['grid']-registros_df['position']
+    registros_df['overtake']=registros_df['grid']-registros_df['positionOrder']
+    
+    #cambiar todos los valores NaN por 0
+    registros_df.fillna(0,inplace=True)
     
     
     # mostrar el dataframe en el template como tabla

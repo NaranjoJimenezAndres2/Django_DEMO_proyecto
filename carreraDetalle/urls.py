@@ -9,6 +9,6 @@ from .views import carreras
 #parece que estas son las urls de la aplicacion
 
 urlpatterns = [
-   path('carreraDetalle/<str:race>/<str:driverId>', views.carreras), 
+   path('carreraDetalle/<str:year>/<str:race>/<str:driverId>', views.carreras), 
 
 ]

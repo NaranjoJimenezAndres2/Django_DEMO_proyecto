@@ -25,12 +25,13 @@ from matplotlib import style
 @csrf_exempt
 @api_view(['GET', 'POST', 'DELETE'])
 
-def carreras(request):
+def carreras(request, year, nombreCircuito):
+    year = int(year)
     client= pymongo.MongoClient(settings.MONGO_URI)
     db = client.get_database('proyecto')
     collection = db.get_collection('races')
     pipeline = [{"$match":{
-    "year": 2021
+    "year": year
     }
 },
 {
@@ -53,7 +54,7 @@ def carreras(request):
     }
 },
 {
-    "$match":{"circuitName":"Bahrain International Circuit"},
+    "$match":{"circuitName":nombreCircuito},
 }
 ,
 {
