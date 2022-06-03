@@ -1,9 +1,18 @@
 {% load static %}
 <html lang="en">
 <head>{# Load the tag library #}
+
 {% load bootstrap4 %}
 <style type="text/css">
- 
+
+  @font-face{
+    font-family:"formula1-display-wide";
+    src:url("https://candyfonts.com/wp-data/2018/10/26/11544/Formula1-Wide_web_0.ttf") format("woff"),
+    url("https://candyfonts.com/wp-data/2018/10/26/11544/Formula1-Wide_web_0.ttf") format("opentype"),
+    url("https://candyfonts.com/wp-data/2018/10/26/11544/Formula1-Wide_web_0.ttf") format("truetype");
+}
+
+
   nav {
     display: flex;
     justify-content: space-between;
@@ -29,13 +38,13 @@
   .cuerpo{
     background-color: #0a0808;
     padding-bottom: 10%;
-    height: 80.5vh;
+    height: 100vh;
   }
 
   video {
     /** Simulationg background-size: cover */
     object-fit: cover;
-    height: 90vh;
+    height: 100vh;
     width: 100%;
   
     position: absolute;
@@ -67,6 +76,9 @@
     color: white;
     text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
     height: 92vh;
+    font-size: 50px;
+    font-style: bold;
+    font-family: "lato";
   }
 </style>
 {# Load CSS and JavaScript #}
@@ -78,7 +90,7 @@
 {% bootstrap_messages %}
 </head>
 {# Display a form #}
-<header>
+<!--<header>
 <nav class="navbar navbar-expand-lg "  >
    <img class="fit-image" src="../../static/admin/img/loginLogo.png" width="100px" height="35px">
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,24 +134,26 @@
        </ul>
      </div>
    </nav>
-  </header>
+  </header>-->
 
 <div class="cuerpo" >
 
-  <video playsinline autoplay muted loop poster="cake.jpg">
+  <video playsinline autoplay muted loop >
     <source src="https://media.gettyimages.com/videos/automobile-racing-track-hockenheimring-badenwurttemberg-germany-video-id87920280" type="video/webm">
     Your browser does not support the video tag.
 </video>
+
 <div class="titulo">
     {% block content %}     
     {% endblock %}
 
 </div>
 
+      <div class="d-flex mt-5 justify-content-center" style="width:100%">
 
-      <form action="https://app-proyecto-primera.herokuapp.com/">
-         <button type="submit"class="btn btn-secondary" >ATRAS</button>
-      </form>
+         <button onclick="history.back()" class="btn btn-danger" >BACK</button>
+
+      </div>
 
 
     
