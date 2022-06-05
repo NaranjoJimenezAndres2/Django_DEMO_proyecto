@@ -159,9 +159,9 @@ def carreras(request, year, nombreCircuito):
     registros_df.drop(['forename','surname'],axis=1,inplace=True)
     registros_df.drop(['raceId','_id','circuitId','constructorId'],axis=1,inplace=True)
     #cambiar el valor /N de time por string --
-    #registros_df=registros_df.replace(to_replace=r'\N',value='--',regex=True)
+    registros_df=registros_df.replace(to_replace=r'\N',value='--',regex=True)
     #pasar el campo puntos a int.
-    #registros_df['position']=registros_df['position'].astype(int)
+    registros_df['position']=registros_df['position'].astype(int)
     #ordenar el dataframe por puntos
     registros_df.sort_values(by=['positionOrder'],ascending=True,inplace=True)
     
